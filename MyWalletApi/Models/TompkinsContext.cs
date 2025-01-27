@@ -25,13 +25,9 @@ public partial class TompkinsContext : DbContext
 
     public virtual DbSet<TrxSplit> TrxSplits { get; set; }
 
-    public virtual DbSet<VwAccountBalance> VwAccountBalances { get; set; }
-
     public virtual DbSet<VwIncome> VwIncomes { get; set; }
 
     public virtual DbSet<VwSpending> VwSpendings { get; set; }
-
-    public virtual DbSet<VwTrx> VwTrxs { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -114,19 +110,6 @@ public partial class TompkinsContext : DbContext
             entity.Property(e => e.TrxId).HasColumnName("TrxID");
         });
 
-        modelBuilder.Entity<VwAccountBalance>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("vwAccountBalances", "Wallet");
-
-            entity.Property(e => e.AccountId).HasColumnName("AccountID");
-            entity.Property(e => e.AccountName)
-                .HasMaxLength(64)
-                .IsUnicode(false);
-            entity.Property(e => e.Balance).HasColumnType("decimal(38, 2)");
-        });
-
         modelBuilder.Entity<VwIncome>(entity =>
         {
             entity
@@ -183,38 +166,6 @@ public partial class TompkinsContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.PayeeId).HasColumnName("PayeeID");
             entity.Property(e => e.TrxDate).HasColumnType("datetime");
-        });
-
-        modelBuilder.Entity<VwTrx>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToView("vwTrxs", "Wallet");
-
-            entity.Property(e => e.AccountId).HasColumnName("AccountID");
-            entity.Property(e => e.AccountName)
-                .HasMaxLength(64)
-                .IsUnicode(false);
-            entity.Property(e => e.Amount).HasColumnType("decimal(8, 2)");
-            entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-            entity.Property(e => e.CategoryName)
-                .HasMaxLength(64)
-                .IsUnicode(false);
-            entity.Property(e => e.CategoryParentId).HasColumnName("CategoryParentID");
-            entity.Property(e => e.Memo)
-                .HasMaxLength(256)
-                .IsUnicode(false);
-            entity.Property(e => e.PayeeId).HasColumnName("PayeeID");
-            entity.Property(e => e.PayeeName)
-                .HasMaxLength(64)
-                .IsUnicode(false);
-            entity.Property(e => e.PayeeParentId).HasColumnName("PayeeParentID");
-            entity.Property(e => e.PostDate).HasColumnType("datetime");
-            entity.Property(e => e.TrxDate).HasColumnType("datetime");
-            entity.Property(e => e.TrxId).HasColumnName("TrxID");
-            entity.Property(e => e.Type)
-                .HasMaxLength(64)
-                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);
