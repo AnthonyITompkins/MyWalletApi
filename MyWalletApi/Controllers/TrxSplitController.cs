@@ -32,7 +32,6 @@ namespace MyWalletApi.Controllers
         }
 
         [HttpPost]
-        [Route("{trxSplit}")]
         public async Task<ActionResult<TrxSplit>> PostTrxSplit(TrxSplit trxSplit)
         {
             _context.TrxSplits.Add(trxSplit);

@@ -32,7 +32,6 @@ namespace MyWalletApi.Controllers
         }
 
         [HttpPost]
-        [Route("{payee}")]
         public async Task<ActionResult<Payee>> PostPayee(Payee payee)
         {
             _context.Payees.Add(payee);

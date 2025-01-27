@@ -32,7 +32,6 @@ namespace MyWalletApi.Controllers
         }
 
         [HttpPost]
-        [Route("{account}")]
         public async Task<ActionResult<Account>> PostAccount(Account account)
         {
             _context.Accounts.Add(account);

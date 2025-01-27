@@ -32,7 +32,6 @@ namespace MyWalletApi.Controllers
         }   
 
         [HttpPost]
-        [Route("{trx}")]
         public async Task<ActionResult<Trx>> PostTrx(Trx trx)
         {
             _context.Trxes.Add(trx);

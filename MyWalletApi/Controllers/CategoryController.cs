@@ -32,7 +32,6 @@ namespace MyWalletApi.Controllers
         }
 
         [HttpPost]
-        [Route("{category}")]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
             _context.Categories.Add(category);
