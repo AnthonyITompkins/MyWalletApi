@@ -23,11 +23,15 @@ public partial class VwSpending
 
     public int CategoryId { get; set; }
 
-    public int? CategorySubId { get; set; }
+    //public int? CategorySubId { get; set; }
 
-    public string Category { get; set; } = null!;
+    public int? CategoryParentId { get; set; }
 
-    public string? CategorySub { get; set; }
+    public string CategoryName { get; set; } = null!;
+
+    public string? CategorySubName { get; set; }
+
+    public string? CategoryFullName { get; set; }
 
     public string? Account { get; set; }
 }

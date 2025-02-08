@@ -150,14 +150,18 @@ public partial class TompkinsContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
             entity.Property(e => e.Amount).HasColumnType("decimal(8, 2)");
-            entity.Property(e => e.Category)
+            entity.Property(e => e.CategoryName)
                 .HasMaxLength(64)
                 .IsUnicode(false);
             entity.Property(e => e.CategoryId).HasColumnName("CategoryID");
-            entity.Property(e => e.CategorySub)
+            entity.Property(e => e.CategorySubName)
                 .HasMaxLength(64)
                 .IsUnicode(false);
-            entity.Property(e => e.CategorySubId).HasColumnName("CategorySubID");
+            entity.Property(e => e.CategoryFullName)
+                .HasMaxLength(128)
+                .IsUnicode(false);
+            //entity.Property(e => e.CategorySubId).HasColumnName("CategorySubID");
+            entity.Property(e => e.CategoryParentId).HasColumnName("CategoryParentID");
             entity.Property(e => e.Memo)
                 .HasMaxLength(256)
                 .IsUnicode(false);
