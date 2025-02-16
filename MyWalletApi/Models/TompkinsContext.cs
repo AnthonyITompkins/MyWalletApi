@@ -99,11 +99,11 @@ public partial class TompkinsContext : DbContext
 
         modelBuilder.Entity<TrxImport>(entity =>
         {
-            entity.HasKey(e => e.TrxId).HasName("PK_TrxImport_TrxID");
+            entity.HasKey(e => e.TrxImportId).HasName("PK_TrxImport_TrxImportID");
 
             entity.ToTable("TrxImport", "Wallet");
 
-            entity.Property(e => e.TrxId).HasColumnName("TrxID");
+            entity.Property(e => e.TrxImportId).HasColumnName("TrxImportID");
             entity.Property(e => e.AccountId).HasColumnName("AccountID");
             entity.Property(e => e.Amount).HasColumnType("decimal(8, 2)");
             entity.Property(e => e.PayeeId).HasColumnName("PayeeID");

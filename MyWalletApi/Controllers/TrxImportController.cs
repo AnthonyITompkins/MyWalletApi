@@ -35,14 +35,14 @@ namespace MyWalletApi.Controllers
         {
             _context.TrxImports.Add(trx);
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetTrxImport", new { id = trx.TrxId }, trx);
+            return CreatedAtAction("GetTrxImport", new { id = trx.TrxImportId }, trx);
         }
 
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> PutTrxImport(int id, TrxImport trx)
         {
-            if (id != trx.TrxId)
+            if (id != trx.TrxImportId)
             {
                 return BadRequest();
             }

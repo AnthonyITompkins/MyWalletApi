@@ -2,7 +2,7 @@
 {
     public class TrxImport
     {
-        public int TrxId { get; set; }
+        public int TrxImportId { get; set; }
 
         public DateTime TrxDate { get; set; }
 
