@@ -31,6 +31,8 @@ public partial class TompkinsContext : DbContext
 
     public virtual DbSet<VwSpending> VwSpendings { get; set; }
 
+    public virtual DbSet<UserAccount> UserAccounts { get; set; }  
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=tcp:tompkinssqlserver.database.windows.net,1433;Initial Catalog=Tompkins;Persist Security Info=False;User ID=tompkinsadmin;Password=Porch.10.Leash;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=False;Connection Timeout=30;");
@@ -192,6 +194,19 @@ public partial class TompkinsContext : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.PayeeId).HasColumnName("PayeeID");
             entity.Property(e => e.TrxDate).HasColumnType("datetime");
+        });
+
+        modelBuilder.Entity<UserAccount>(entity =>
+        {
+            entity.HasKey(e => e.UserAccountId).HasName("PK_UserAccount_UserAccountID");
+            entity.ToTable("UserAccount", "Wallet");
+            entity.HasIndex(e => e.Email, "UQ_UserAccount_Email").IsUnique();
+
+            entity.Property(e => e.UserAccountId).HasColumnName("UserAccountID");
+            entity.Property(e => e.Email).HasColumnName("Email")
+                .HasMaxLength(100);
+            entity.Property(e => e.Password).HasColumnName("Password")
+                .HasMaxLength(25);
         });
 
         OnModelCreatingPartial(modelBuilder);
