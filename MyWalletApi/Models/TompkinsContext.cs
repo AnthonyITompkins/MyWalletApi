@@ -207,6 +207,8 @@ public partial class TompkinsContext : DbContext
                 .HasMaxLength(100);
             entity.Property(e => e.Password).HasColumnName("Password")
                 .HasMaxLength(25);
+            entity.Property(e => e.Active).HasColumnType("bit");
+            entity.Property(e => e.RecordDate).HasColumnType("datetime");
         });
 
         OnModelCreatingPartial(modelBuilder);

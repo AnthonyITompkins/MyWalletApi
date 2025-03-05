@@ -15,5 +15,9 @@ namespace MyWalletApi.Models
         [Required(ErrorMessage = "Password is required")]
         [MaxLength(25, ErrorMessage = "Maximum password length is 25.")]
         public required string Password { get; set; }
+
+        public bool Active { get; set; } = false;
+
+        public DateTime RecordDate { get; set; }
     }
 }
