@@ -16,9 +16,6 @@ namespace MyWalletApi.Models
         [Required(ErrorMessage = "Password is required")]
         public required string Password { get; set; }
 
-        [JsonIgnore]
-        public string PasswordSalt { get; set; }
-
         public bool Active { get; set; } = false;
 
         public DateTime RecordDate { get; set; }

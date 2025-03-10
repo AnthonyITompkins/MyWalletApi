@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyWalletApi.Models;
+using BCrypt.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace MyWalletApi.Controllers
 {
@@ -26,12 +28,16 @@ namespace MyWalletApi.Controllers
             {
                 return NotFound();
             }
+
             return userAccount;
         }
 
         [HttpPost]
         public async Task<ActionResult<UserAccount>> PostUserAccount(UserAccount userAccount)
         {
+            // Hash and salt password.
+            userAccount.Password = BCrypt.Net.BCrypt.HashPassword(userAccount.Password, workFactor: 13);
+
             _context.UserAccounts.Add(userAccount);
             await _context.SaveChangesAsync();
             return CreatedAtAction("GetUserAccount", new { id = userAccount.UserAccountId }, userAccount);
