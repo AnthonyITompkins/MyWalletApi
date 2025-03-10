@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace MyWalletApi.Models
 {
@@ -15,7 +16,8 @@ namespace MyWalletApi.Models
         [Required(ErrorMessage = "Password is required")]
         public required string Password { get; set; }
 
-        public required string PasswordSalt { get; set; }
+        [JsonIgnore]
+        public string PasswordSalt { get; set; }
 
         public bool Active { get; set; } = false;
 
