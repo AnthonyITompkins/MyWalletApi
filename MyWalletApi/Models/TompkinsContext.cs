@@ -205,8 +205,8 @@ public partial class TompkinsContext : DbContext
             entity.Property(e => e.UserAccountId).HasColumnName("UserAccountID");
             entity.Property(e => e.Email).HasColumnName("Email")
                 .HasMaxLength(100);
-            entity.Property(e => e.Password).HasColumnName("Password")
-                .HasMaxLength(25);
+            entity.Property(e => e.Password).HasColumnName("Password");
+            entity.Property(e => e.PasswordSalt).HasColumnName("PasswordSalt");
             entity.Property(e => e.Active).HasColumnType("bit");
             entity.Property(e => e.RecordDate).HasColumnType("datetime");
         });
